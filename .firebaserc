@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "my-project-1470522162116": {
+      "hosting": {
+        "mandaditosexpress": [
+          "my-project-1470522162116"
+        ]
+      }
+    }
+  }
+}
