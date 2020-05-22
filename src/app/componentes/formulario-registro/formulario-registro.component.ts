@@ -26,7 +26,7 @@ export class FormularioRegistroComponent implements OnInit {
     let email = this.sigupForm.controls.userEmail.value;
     let password = this.sigupForm.controls.userPassword.value;
 
-    this.loginService.SignUp(email, password);
+    // this.loginService.SignUp(email, password);
 
   }
 

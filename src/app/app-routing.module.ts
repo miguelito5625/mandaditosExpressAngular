@@ -5,26 +5,24 @@ import { PaginaPrincipalComponent } from './paginas/pagina-principal/pagina-prin
 import { AuthguardGuard } from './guards/authguard.guard';
 import { PaginaGeneralPedidoComponent } from './paginas/pagina-general-pedido/pagina-general-pedido.component';
 import { FormularioRegistroComponent } from './componentes/formulario-registro/formulario-registro.component';
+import { GenerarPedidoClienteComponent } from './paginas/cliente/generar-pedido-cliente/generar-pedido-cliente.component';
+import { LoginClienteComponent } from './paginas/cliente/login-cliente/login-cliente.component';
+import { RegistrarClienteComponent } from './paginas/cliente/registrar-cliente/registrar-cliente.component';
 
 
 const routes: Routes = [
   {
     path: '',
-    component: PaginaPrincipalComponent,
-    canActivate: [AuthguardGuard]
-  },
-  {
-    path: 'generar-pedido',
-    component: PaginaGeneralPedidoComponent,
+    component: GenerarPedidoClienteComponent,
     canActivate: [AuthguardGuard]
   },
   {
     path: 'login',
-    component: FormularioLoginComponent
+    component: LoginClienteComponent
   },
   {
-    path: 'sigup',
-    component: FormularioRegistroComponent
+    path:'registro',
+    component: RegistrarClienteComponent
   }
 ];
 

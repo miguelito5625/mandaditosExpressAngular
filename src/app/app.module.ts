@@ -17,6 +17,17 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from 'src/environments/environment';
 import { FormularioRegistroComponent } from './componentes/formulario-registro/formulario-registro.component';
+import { RegistrarClienteComponent } from './paginas/cliente/registrar-cliente/registrar-cliente.component';
+import { LoginClienteComponent } from './paginas/cliente/login-cliente/login-cliente.component';
+import { GenerarPedidoClienteComponent } from './paginas/cliente/generar-pedido-cliente/generar-pedido-cliente.component';
+import { ListarPedidosRepartidorComponent } from './paginas/repartidor/listar-pedidos-repartidor/listar-pedidos-repartidor.component';
+import { DetallePedidoRepartidorComponent } from './paginas/repartidor/detalle-pedido-repartidor/detalle-pedido-repartidor.component';
+import { RegistrarRepartidorComponent } from './paginas/repartidor/registrar-repartidor/registrar-repartidor.component';
+import { LoginRepartidorComponent } from './paginas/repartidor/login-repartidor/login-repartidor.component';
+import { LoginAdminComponent } from './paginas/admin/login-admin/login-admin.component';
+import { RegistrarAdminComponent } from './paginas/admin/registrar-admin/registrar-admin.component';
+import { ListarPedidosAdminComponent } from './paginas/admin/listar-pedidos-admin/listar-pedidos-admin.component';
+import { DetallePedidoAdminComponent } from './paginas/admin/detalle-pedido-admin/detalle-pedido-admin.component';
 
 
 @NgModule({
@@ -27,7 +38,18 @@ import { FormularioRegistroComponent } from './componentes/formulario-registro/f
     FormularioLoginComponent,
     PaginaPrincipalComponent,
     PaginaGeneralPedidoComponent,
-    FormularioRegistroComponent
+    FormularioRegistroComponent,
+    RegistrarClienteComponent,
+    LoginClienteComponent,
+    GenerarPedidoClienteComponent,
+    ListarPedidosRepartidorComponent,
+    DetallePedidoRepartidorComponent,
+    RegistrarRepartidorComponent,
+    LoginRepartidorComponent,
+    LoginAdminComponent,
+    RegistrarAdminComponent,
+    ListarPedidosAdminComponent,
+    DetallePedidoAdminComponent
   ],
   imports: [
     BrowserModule,

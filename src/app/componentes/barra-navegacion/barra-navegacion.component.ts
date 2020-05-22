@@ -29,7 +29,7 @@ export class BarraNavegacionComponent implements OnInit {
   }
 
   cerrarSesion() {
-    this.loginService.SignOut();
+    this.loginService.cerrarSesion();
   }
 
 }

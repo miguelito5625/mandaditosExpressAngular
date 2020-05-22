@@ -28,7 +28,7 @@ export class FormularioLoginComponent implements OnInit {
     let email = this.loginForm.controls.userEmail.value;
     let password = this.loginForm.controls.userPassword.value;
 
-    this.loginService.SignIn(email, password);
+    // this.loginService.SignIn(email, password);
 
     // this.loginService.loginEmailAndPassword(this.loginForm.value).subscribe(
     //   (data) => {

@@ -12,37 +12,18 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class LoginService {
 
-  private apiServer = "http://localhost:5000/my-project-1470522162116/us-central1/app";
+  private apiServer = "http://localhost:3000";
 
-  userData: any; // Save logged in user data
+  datosUsuario: any; // Save logged in user data
   isLoggedIn$ = new EventEmitter<boolean>();
 
   constructor(
     private httpClient: HttpClient,
     private router: Router,
-    public afs: AngularFirestore,   // Inject Firestore service
-    public afAuth: AngularFireAuth, // Inject Firebase auth service
     public ngZone: NgZone // NgZone service to remove outside scope warning
-  ) {
-    /* Saving user data in localstorage when 
-  logged in and setting up null when logged out */
-    this.afAuth.authState.subscribe(user => {
-      if (user) {
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
-        localStorage.setItem('isLoggedIn', 'true');
-        this.router.navigate(['/']);
-        this.isLoggedIn$.emit(true);
-      } else {
-        localStorage.removeItem('isLoggedIn');
-        localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
-        this.isLoggedIn$.emit(false);
-      }
-    });
-
-  }
+  ) { 
+    // this.isLoggedIn$.emit(localStorage.getItem('isLoggedIn')=="true")
+   }
 
 
   httpOptions = {
@@ -52,80 +33,26 @@ export class LoginService {
   }
 
 
-  // Sign in with email/password
-  SignIn(email, password) {
-    return this.afAuth.signInWithEmailAndPassword(email, password)
-      .then((result) => {
-        console.log("todo ok: ");
-        console.log(result);
-        // this.ngZone.run(() => {
-        //   this.router.navigate(['/']);
-        // });
-        this.SetUserData(result.user);
-      }).catch((error) => {
-        // window.alert(error.message)
-        console.log("error: ");
-        console.log(error);
-      })
+
+  inicioSesion(usuario): Observable<Usuario> {
+    return this.httpClient.post<Usuario>(this.apiServer + '/login', JSON.stringify(usuario), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
   }
 
-  // Sign up with email/password
-  SignUp(email, password) {
-    return this.afAuth.createUserWithEmailAndPassword(email, password)
-      .then((result) => {
-        /* Call the SendVerificaitonMail() function when new user sign 
-        up and returns promise */
-        // this.SendVerificationMail();
-        this.SetUserData(result.user);
-      }).catch((error) => {
-        // window.alert(error.message)
-        console.log(error.message);
-
-      })
-  }
-
-  // Send email verfificaiton when new user sign up
-  // Email verification when new user register
-  SendVerificationMail() {
-    return this.afAuth.currentUser.then(u => u.sendEmailVerification())
-      .then(() => {
-        this.router.navigate(['verify-email']);
-      })
-  }
-
-  /* Setting up user data when sign in with username/password, 
-  sign up with username/password and sign in with social auth  
-  provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  SetUserData(user) {
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-    const userData: any = {
-      uid: user.uid,
-      email: user.email,
-      displayName: user.displayName,
-      photoURL: user.photoURL,
-      emailVerified: user.emailVerified
+  registrarUsuario(formulario): Observable<Usuario> {
+    const cliente: Usuario = {
+      nombres: formulario.inputNombres,
+      apellidos: formulario.inputApellidos,
+      direccion: formulario.inputDireccion,
+      telefono: formulario.inputTelefono,
+      correo: formulario.inputEmail,
+      contrasenia: formulario.inputPassword,
+      tipoUsuario: "Cliente",
+      estado: "Activo",      
     }
-    // console.log(userData);
-
-    return userRef.set(userData, {
-      merge: true
-    })
-  }
-
-  // Sign out 
-  SignOut() {
-    return this.afAuth.signOut().then(() => {
-      localStorage.removeItem('user');
-      localStorage.removeItem('isLoggedIn');
-      this.router.navigate(['login']);
-    })
-  }
-
-
-  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-  loginEmailAndPassword(usuario): Observable<Usuario> {
-    return this.httpClient.post<Usuario>(this.apiServer + '/login/emaialandpassword', JSON.stringify(usuario), this.httpOptions)
+    return this.httpClient.post<Usuario>(this.apiServer + '/registar', JSON.stringify(cliente), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )
@@ -133,6 +60,8 @@ export class LoginService {
 
   cerrarSesion() {
     localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('usuario');
+    this.isLoggedIn$.emit(false);
     this.router.navigate(['/login']);
   }
 
