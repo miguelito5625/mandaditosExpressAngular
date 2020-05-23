@@ -28,6 +28,10 @@ import { LoginAdminComponent } from './paginas/admin/login-admin/login-admin.com
 import { RegistrarAdminComponent } from './paginas/admin/registrar-admin/registrar-admin.component';
 import { ListarPedidosAdminComponent } from './paginas/admin/listar-pedidos-admin/listar-pedidos-admin.component';
 import { DetallePedidoAdminComponent } from './paginas/admin/detalle-pedido-admin/detalle-pedido-admin.component';
+import { PaginaPrincipalClienteComponent } from './paginas/cliente/pagina-principal-cliente/pagina-principal-cliente.component';
+import { ListarPedidosClienteComponent } from './paginas/cliente/listar-pedidos-cliente/listar-pedidos-cliente.component';
+import { PedidosClientePendientesComponent } from './paginas/cliente/listar-pedidos-cliente/pedidos-cliente-pendientes/pedidos-cliente-pendientes.component';
+import { PedidosClienteEntregadosComponent } from './paginas/cliente/listar-pedidos-cliente/pedidos-cliente-entregados/pedidos-cliente-entregados.component';
 
 
 @NgModule({
@@ -49,7 +53,11 @@ import { DetallePedidoAdminComponent } from './paginas/admin/detalle-pedido-admi
     LoginAdminComponent,
     RegistrarAdminComponent,
     ListarPedidosAdminComponent,
-    DetallePedidoAdminComponent
+    DetallePedidoAdminComponent,
+    PaginaPrincipalClienteComponent,
+    ListarPedidosClienteComponent,
+    PedidosClientePendientesComponent,
+    PedidosClienteEntregadosComponent
   ],
   imports: [
     BrowserModule,

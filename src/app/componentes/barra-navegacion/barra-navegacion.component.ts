@@ -21,7 +21,7 @@ export class BarraNavegacionComponent implements OnInit {
 
     this.loginService.isLoggedIn$.subscribe(
       res => {
-        console.log('sesion: ' + res);
+        // console.log('sesion: ' + res);
         this.isLoggedIn = res;
       }
     )

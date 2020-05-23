@@ -8,12 +8,36 @@ import { FormularioRegistroComponent } from './componentes/formulario-registro/f
 import { GenerarPedidoClienteComponent } from './paginas/cliente/generar-pedido-cliente/generar-pedido-cliente.component';
 import { LoginClienteComponent } from './paginas/cliente/login-cliente/login-cliente.component';
 import { RegistrarClienteComponent } from './paginas/cliente/registrar-cliente/registrar-cliente.component';
+import { PaginaPrincipalClienteComponent } from './paginas/cliente/pagina-principal-cliente/pagina-principal-cliente.component';
+import { ListarPedidosClienteComponent } from './paginas/cliente/listar-pedidos-cliente/listar-pedidos-cliente.component';
+import { PedidosClientePendientesComponent } from './paginas/cliente/listar-pedidos-cliente/pedidos-cliente-pendientes/pedidos-cliente-pendientes.component';
+import { PedidosClienteEntregadosComponent } from './paginas/cliente/listar-pedidos-cliente/pedidos-cliente-entregados/pedidos-cliente-entregados.component';
 
 
 const routes: Routes = [
   {
     path: '',
+    component: PaginaPrincipalClienteComponent,
+    canActivate: [AuthguardGuard]
+  },
+  {
+    path: 'generar-pedido',
     component: GenerarPedidoClienteComponent,
+    canActivate: [AuthguardGuard]
+  },
+  {
+    path: 'consultar-pedidos',
+    component: ListarPedidosClienteComponent,
+    canActivate: [AuthguardGuard]
+  },
+  {
+    path: 'consultar-pedidos/pendientes',
+    component: PedidosClientePendientesComponent,
+    canActivate: [AuthguardGuard]
+  },
+  {
+    path: 'consultar-pedidos/entregados',
+    component: PedidosClienteEntregadosComponent,
     canActivate: [AuthguardGuard]
   },
   {
