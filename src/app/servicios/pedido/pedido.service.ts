@@ -41,6 +41,14 @@ export class PedidoService {
       )
   }
 
+  cmabiarEstadoDelPedido(pedido): Observable<Pedido> {
+    return this.httpClient.post<Pedido>(this.apiServer + '/cliente/pedido/cambiar-estado', JSON.stringify(pedido), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
+
   errorHandler(error) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {

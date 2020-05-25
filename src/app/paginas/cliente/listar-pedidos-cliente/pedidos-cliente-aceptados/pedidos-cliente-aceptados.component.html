@@ -2,7 +2,7 @@
 
     <ul class="list-group mr-auto ml-auto" style="width: 24rem;">
         <li class="list-group-item">
-            Pedidos Entregados
+            Pedidos Aceptados
         </li>
         <li *ngFor="let pedido of listaDePedidos" class="list-group-item">
             <div class="card text-white bg-secondary mb-3 mr-auto ml-auto" style="width: 100%;">
@@ -13,7 +13,7 @@
                     <p class="card-text">Telefono: {{pedido.telefono_cliente}}</p>
                     <p class="card-text">Estado: {{pedido.estado_pedido}}</p>
                     <p class="card-text">Creado: {{formatearFecha(pedido.onCreated)}}</p>
-                    <p class="card-text">Costo de mandado: Q{{pedido.precio}}</p>
+                    <p class="card-text font-weight-bold">Precio a Pagar: {{pedido.precio}} + precio de los productos</p>
                     <p>
                         <button class="btn btn-primary" (click)="abrirCollapse(pedido.fila_numero)">Detalles</button>
                     </p>

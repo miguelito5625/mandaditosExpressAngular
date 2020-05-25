@@ -32,6 +32,9 @@ import { PaginaPrincipalClienteComponent } from './paginas/cliente/pagina-princi
 import { ListarPedidosClienteComponent } from './paginas/cliente/listar-pedidos-cliente/listar-pedidos-cliente.component';
 import { PedidosClientePendientesComponent } from './paginas/cliente/listar-pedidos-cliente/pedidos-cliente-pendientes/pedidos-cliente-pendientes.component';
 import { PedidosClienteEntregadosComponent } from './paginas/cliente/listar-pedidos-cliente/pedidos-cliente-entregados/pedidos-cliente-entregados.component';
+import { PedidosClienteRevisadosComponent } from './paginas/cliente/listar-pedidos-cliente/pedidos-cliente-revisados/pedidos-cliente-revisados.component';
+import { PedidosClienteAceptadosComponent } from './paginas/cliente/listar-pedidos-cliente/pedidos-cliente-aceptados/pedidos-cliente-aceptados.component';
+import { PedidosClienteRechazadosComponent } from './paginas/cliente/listar-pedidos-cliente/pedidos-cliente-rechazados/pedidos-cliente-rechazados.component';
 
 
 @NgModule({
@@ -57,7 +60,10 @@ import { PedidosClienteEntregadosComponent } from './paginas/cliente/listar-pedi
     PaginaPrincipalClienteComponent,
     ListarPedidosClienteComponent,
     PedidosClientePendientesComponent,
-    PedidosClienteEntregadosComponent
+    PedidosClienteEntregadosComponent,
+    PedidosClienteRevisadosComponent,
+    PedidosClienteAceptadosComponent,
+    PedidosClienteRechazadosComponent
   ],
   imports: [
     BrowserModule,

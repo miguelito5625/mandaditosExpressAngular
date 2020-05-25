@@ -4,13 +4,15 @@
         <li class="list-group-item">
             Pedidos Pendientes
         </li>
-        <li *ngFor="let pedido of listaDePedidosPendientes" class="list-group-item">
+        <li *ngFor="let pedido of listaDePedidos" class="list-group-item">
             <div class="card text-white bg-secondary mb-3 mr-auto ml-auto" style="width: 100%;">
                 <div class="card-header">Pedido #{{pedido.fila_numero}}</div>
                 <div class="card-body">
                     <p class="card-text">Cliente: {{pedido.nombre_cliente}}</p>
                     <p class="card-text">Destino: {{pedido.direccion_cliente}}</p>
                     <p class="card-text">Telefono: {{pedido.telefono_cliente}}</p>
+                    <p class="card-text">Estado: {{pedido.estado_pedido}}</p>
+                    <p class="card-text">Creado: {{formatearFecha(pedido.onCreated)}}</p>
 
                     <p>
                         <button class="btn btn-primary" (click)="abrirCollapse(pedido.fila_numero)">Detalles</button>
