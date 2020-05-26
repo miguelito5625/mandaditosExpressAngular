@@ -6,13 +6,14 @@ import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  private apiServer = "http://localhost:3000";
+  private apiServer = environment.backendServer;
 
   // datosUsuario: any; // Save logged in user data
   usuarioActual: Usuario;

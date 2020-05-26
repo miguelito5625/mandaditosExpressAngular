@@ -5,6 +5,8 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Pedido } from 'src/app/interfaces/pedido/pedido';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +14,7 @@ import { Pedido } from 'src/app/interfaces/pedido/pedido';
 export class PedidoService {
 
   
-  private apiServer = "http://localhost:3000";
+  private apiServer = environment.backendServer;
 
 
   constructor(
