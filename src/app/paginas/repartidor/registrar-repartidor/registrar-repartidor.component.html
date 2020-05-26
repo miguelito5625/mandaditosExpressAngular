@@ -1,1 +1,69 @@
-<p>registrar-repartidor works!</p>
+<div class="container">
+    <form class="mx-auto" style="width: 300px;" autocomplete="off" [formGroup]="sigupForm" (submit)="onSubmit()">
+        <div class="form-group d-flex justify-content-center">
+            <img class="img-fluid" src="/assets/imagenes/imagen-login.png" style="height: 200px; width: 200px;">
+        </div>
+        <div class="form-group mt-2">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white"><i class="far fa-user"></i></span>
+                </div>
+                <input class="form-control" type="text" placeholder="Nombres"
+                    auto-complete="false" formControlName="inputNombres">
+            </div>
+        </div>
+
+        <div class="form-group mt-2">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white"><i class="far fa-user"></i></span>
+                </div>
+                <input class="form-control" type="text" placeholder="Apellidos"
+                    auto-complete="false" formControlName="inputApellidos">
+            </div>
+        </div>
+
+        
+
+        <div class="form-group mt-2">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white"><i class="far fa-user"></i></span>
+                </div>
+                <input class="form-control" type="text" placeholder="Direccion"
+                    auto-complete="false" formControlName="inputDireccion">
+            </div>
+        </div>
+
+        <div class="form-group mt-2">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white"><i class="far fa-user"></i></span>
+                </div>
+                <input class="form-control" type="text" placeholder="Telefono"
+                    auto-complete="false" formControlName="inputTelefono">
+            </div>
+        </div>
+
+        <div class="form-group mt-2">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white"><i class="far fa-user"></i></span>
+                </div>
+                <input id="userEmail" class="form-control" name="userEmail" type="email" placeholder="correo"
+                    auto-complete="false" formControlName="inputEmail">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white"><i class="fas fa-unlock-alt"></i></span>
+                </div>
+                <input id="userPassword" class="form-control" type="password" placeholder="contrasena"
+                    auto-complete="something-new" formControlName="inputPassword">
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary float-right"><i class="fas fa-sign-in-alt"></i> Registrarme</button>
+    </form>
+</div>

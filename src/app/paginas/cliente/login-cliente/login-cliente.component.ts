@@ -4,6 +4,8 @@ import { LoginService } from 'src/app/servicios/login/login.service';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/interfaces/usuario/usuario';
 
+declare var Swal: any;
+
 @Component({
   selector: 'app-login-cliente',
   templateUrl: './login-cliente.component.html',
@@ -22,41 +24,83 @@ export class LoginClienteComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // console.log(localStorage.getItem('isLoggedIn'));
-    
-    // const usuario: Usuario = JSON.parse(localStorage.getItem('usuario'));
-
-    // console.log(usuario);
     
   }
 
   onSubmit() {
-    // console.log(this.loginForm.value);
-    // let email = this.loginForm.controls.userEmail.value;
-    // let password = this.loginForm.controls.userPassword.value;
+
+    Swal.fire({
+      title: 'Iniciando sesion',
+      icon: 'info',
+      html: 'Por favor, espere',
+      timerProgressBar: true,
+      allowOutsideClick: false,
+      onBeforeOpen: () => {
+        Swal.showLoading()
+      }
+    });
 
 
     this.loginService.inicioSesion(this.loginForm.value).subscribe(
       (data) => {
         // console.log(data);
-        if (data['status']=='ok') {
+        if (data['status'] == 'ok') {
           console.log('iniciar sesion');
+          this.loginService.isLoggedIn$.emit(true);
           const usuario: Usuario = {
-            apellidos: data['cliente'].apellidos,
-            correo:  data['cliente'].correo,
-            direccion:  data['cliente'].direccion,
-            nombres:  data['cliente'].nombres,
-            telefono:  data['cliente'].telefono,
-            tipoUsuario:  data['cliente'].tipoUsuario,
-            id:  data['cliente'].id
+            apellidos: data['usuario'].apellidos,
+            correo: data['usuario'].correo,
+            direccion: data['usuario'].direccion,
+            nombres: data['usuario'].nombres,
+            telefono: data['usuario'].telefono,
+            tipoUsuario: data['usuario'].tipoUsuario,
+            id: data['usuario'].id
           };
-          // console.log(usuario);
+
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top',
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true,
+            onOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            },
+            onClose:(toast) => {
           localStorage.setItem('usuario', JSON.stringify(usuario));
+          localStorage.setItem('tipoUsuario', "Cliente");
           localStorage.setItem('isLoggedIn', "true");
-          this.router.navigate(['/']);
-        }else{
+          this.router.navigate(['/cliente']);
+            }
+          });
+          
+          Toast.fire({
+            icon: 'success',
+            title: 'Sesion iniciada'
+          });
+
+          
+        } else {
           console.log('error al iniciar sesion');
+          Swal.fire({
+            title: 'Error!',
+            text: 'No se pudo iniciar sesion',
+            icon: 'error',
+            confirmButtonText: 'Aceptar'
+          });
         }
+      },
+      err => {
+        console.log('no hay conexion hacia el servidor');
+        
+        Swal.fire({
+          title: 'Error!',
+          text: 'No se pudo iniciar sesion',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
+      
       }
     );
   }

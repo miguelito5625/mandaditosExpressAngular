@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { FormularioLoginComponent } from './componentes/formulario-login/formulario-login.component';
 import { PaginaPrincipalComponent } from './paginas/pagina-principal/pagina-principal.component';
 import { AuthguardGuard } from './guards/authguard.guard';
-import { PaginaGeneralPedidoComponent } from './paginas/pagina-general-pedido/pagina-general-pedido.component';
 import { FormularioRegistroComponent } from './componentes/formulario-registro/formulario-registro.component';
 import { GenerarPedidoClienteComponent } from './paginas/cliente/generar-pedido-cliente/generar-pedido-cliente.component';
 import { LoginClienteComponent } from './paginas/cliente/login-cliente/login-cliente.component';
@@ -15,56 +14,126 @@ import { PedidosClienteEntregadosComponent } from './paginas/cliente/listar-pedi
 import { PedidosClienteRevisadosComponent } from './paginas/cliente/listar-pedidos-cliente/pedidos-cliente-revisados/pedidos-cliente-revisados.component';
 import { PedidosClienteAceptadosComponent } from './paginas/cliente/listar-pedidos-cliente/pedidos-cliente-aceptados/pedidos-cliente-aceptados.component';
 import { PedidosClienteRechazadosComponent } from './paginas/cliente/listar-pedidos-cliente/pedidos-cliente-rechazados/pedidos-cliente-rechazados.component';
+import { ClienteComponent } from './paginas/cliente/cliente.component';
+import { LoginRepartidorComponent } from './paginas/repartidor/login-repartidor/login-repartidor.component';
+import { RegistrarRepartidorComponent } from './paginas/repartidor/registrar-repartidor/registrar-repartidor.component';
+import { RepartidorComponent } from './paginas/repartidor/repartidor.component';
+import { GuardRepartidorGuard } from './guards/repartidor/guard-repartidor.guard';
+import { PaginaPrincipalRepartidorComponent } from './paginas/repartidor/pagina-principal-repartidor/pagina-principal-repartidor.component';
+import { PedidosRepartidorPendientesComponent } from './paginas/repartidor/pedidos/pedidos-repartidor-pendientes/pedidos-repartidor-pendientes.component';
+import { PedidosRepartidorEntregadosComponent } from './paginas/repartidor/pedidos/pedidos-repartidor-entregados/pedidos-repartidor-entregados.component';
+import { AdminComponent } from './paginas/admin/admin.component';
+import { PaginaPrincipalAdminComponent } from './paginas/admin/pagina-principal-admin/pagina-principal-admin.component';
+import { LoginAdminComponent } from './paginas/admin/login-admin/login-admin.component';
+import { RegistrarAdminComponent } from './paginas/admin/registrar-admin/registrar-admin.component';
+import { GuardAdminGuard } from './guards/admin/guard-admin.guard';
 
 
 const routes: Routes = [
-  {
-    path: '',
-    component: PaginaPrincipalClienteComponent,
-    canActivate: [AuthguardGuard]
+  { path: '',   
+  redirectTo: '/cliente', 
+  pathMatch: 'full' 
   },
   {
-    path: 'generar-pedido',
-    component: GenerarPedidoClienteComponent,
-    canActivate: [AuthguardGuard]
+    path: 'cliente',
+    component: ClienteComponent,
+    canActivate: [AuthguardGuard],
+    children: [
+      {
+        path: '',
+        component: PaginaPrincipalClienteComponent,
+        // canActivate: [AuthguardGuard]
+      },
+      {
+        path: 'generar-pedido',
+        component: GenerarPedidoClienteComponent,
+        // canActivate: [AuthguardGuard]
+      },
+      {
+        path: 'consultar-pedidos',
+        component: ListarPedidosClienteComponent,
+        // canActivate: [AuthguardGuard]
+      },
+      {
+        path: 'consultar-pedidos/pendientes',
+        component: PedidosClientePendientesComponent,
+        // canActivate: [AuthguardGuard]
+      },
+      {
+        path: 'consultar-pedidos/revisados',
+        component: PedidosClienteRevisadosComponent,
+        // canActivate: [AuthguardGuard]
+      },
+      {
+        path: 'consultar-pedidos/aceptados',
+        component: PedidosClienteAceptadosComponent,
+        // canActivate: [AuthguardGuard]
+      },
+      {
+        path: 'consultar-pedidos/entregados',
+        component: PedidosClienteEntregadosComponent,
+        // canActivate: [AuthguardGuard]
+      },
+      {
+        path: 'consultar-pedidos/rechazados',
+        component: PedidosClienteRechazadosComponent,
+        // canActivate: [AuthguardGuard]
+      }
+    ]
   },
   {
-    path: 'consultar-pedidos',
-    component: ListarPedidosClienteComponent,
-    canActivate: [AuthguardGuard]
+    path: 'repartidor',
+    component: RepartidorComponent,
+    canActivate: [GuardRepartidorGuard],
+    children: [
+      {
+        path: '',
+        component: PaginaPrincipalRepartidorComponent
+      },
+      {
+        path: 'consultar-pedidos/pendientes',
+        component: PedidosRepartidorPendientesComponent
+      },
+      {
+        path: 'consultar-pedidos/entregados',
+        component: PedidosRepartidorEntregadosComponent
+      }
+    ]
   },
   {
-    path: 'consultar-pedidos/pendientes',
-    component: PedidosClientePendientesComponent,
-    canActivate: [AuthguardGuard]
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [GuardAdminGuard],
+    children: [ 
+      {
+        path: '',
+        component: PaginaPrincipalAdminComponent
+      }
+    ]
   },
   {
-    path: 'consultar-pedidos/revisados',
-    component: PedidosClienteRevisadosComponent,
-    canActivate: [AuthguardGuard]
-  },
-  {
-    path: 'consultar-pedidos/aceptados',
-    component: PedidosClienteAceptadosComponent,
-    canActivate: [AuthguardGuard]
-  },
-  {
-    path: 'consultar-pedidos/entregados',
-    component: PedidosClienteEntregadosComponent,
-    canActivate: [AuthguardGuard]
-  },
-  {
-    path: 'consultar-pedidos/rechazados',
-    component: PedidosClienteRechazadosComponent,
-    canActivate: [AuthguardGuard]
-  },
-  {
-    path: 'login',
+    path: 'cliente/login',
     component: LoginClienteComponent
   },
   {
-    path:'registro',
+    path:'cliente/registro',
     component: RegistrarClienteComponent
+  },
+  {
+    path: 'repartidor/login',
+    component: LoginRepartidorComponent
+  },
+  {
+    path:'repartidor/registro',
+    component: RegistrarRepartidorComponent
+  },
+  {
+    path: 'admin/login',
+    component: LoginAdminComponent
+  },
+  {
+    path:'admin/registro',
+    component: RegistrarAdminComponent
   }
 ];
 

@@ -14,7 +14,8 @@ export class LoginService {
 
   private apiServer = "http://localhost:3000";
 
-  datosUsuario: any; // Save logged in user data
+  // datosUsuario: any; // Save logged in user data
+  usuarioActual: Usuario;
   isLoggedIn$ = new EventEmitter<boolean>();
 
   constructor(
@@ -41,7 +42,7 @@ export class LoginService {
       )
   }
 
-  registrarUsuario(formulario): Observable<Usuario> {
+  registrarUsuario(formulario, tipoUsuario): Observable<Usuario> {
     const cliente: Usuario = {
       nombres: formulario.inputNombres,
       apellidos: formulario.inputApellidos,
@@ -49,10 +50,10 @@ export class LoginService {
       telefono: formulario.inputTelefono,
       correo: formulario.inputEmail,
       contrasenia: formulario.inputPassword,
-      tipoUsuario: "Cliente",
+      tipoUsuario: tipoUsuario,
       estado: "Activo",      
     }
-    return this.httpClient.post<Usuario>(this.apiServer + '/registar', JSON.stringify(cliente), this.httpOptions)
+    return this.httpClient.post<Usuario>(this.apiServer + '/registrar', JSON.stringify(cliente), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )
@@ -61,8 +62,25 @@ export class LoginService {
   cerrarSesion() {
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('usuario');
+    localStorage.removeItem('tipoUsuario');
     this.isLoggedIn$.emit(false);
-    this.router.navigate(['/login']);
+    this.router.navigate(['/cliente/login']);
+  }
+
+  cerrarSesionRepartidor() {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('tipoUsuario');
+    this.isLoggedIn$.emit(false);
+    this.router.navigate(['/repartidor/login']);
+  }
+
+  cerrarSesionAdmin() {
+    localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('tipoUsuario');
+    this.isLoggedIn$.emit(false);
+    this.router.navigate(['/admin/login']);
   }
 
 

@@ -18,13 +18,16 @@ export class BarraNavegacionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    // console.log('navegacion');
+    
     this.loginService.isLoggedIn$.subscribe(
       res => {
         // console.log('sesion: ' + res);
         this.isLoggedIn = res;
       }
-    )
+    );
+
+    this.loginService.isLoggedIn$.emit(true);
 
   }
 

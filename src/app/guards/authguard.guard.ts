@@ -19,13 +19,13 @@ export class AuthguardGuard implements CanActivate {
          return true;
       }
       // navigate to login page as user is not authenticated    
-      this.router.navigate(['/login']);
+      this.router.navigate(['/cliente/login']);
       return false;
    }
 
    public isLoggedIn(): boolean {
       let status = false;
-      if (localStorage.getItem('isLoggedIn') == "true") {
+      if (localStorage.getItem('isLoggedIn') == "true" && localStorage.getItem('tipoUsuario') == "Cliente") {
          this.loginService.isLoggedIn$.emit(true);
          status = true;
       }
