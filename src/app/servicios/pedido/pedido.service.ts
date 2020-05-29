@@ -30,7 +30,7 @@ export class PedidoService {
   }
 
   guardarPedido(pedido): Observable<Pedido> {
-    return this.httpClient.post<Pedido>(this.apiServer + '/cliente/pedido', JSON.stringify(pedido), this.httpOptions)
+    return this.httpClient.post<Pedido>(this.apiServer + '/pedido', JSON.stringify(pedido), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )
@@ -42,9 +42,30 @@ export class PedidoService {
         catchError(this.errorHandler)
       )
   }
+  
+  listarPedidosPorEstado(estado): Observable<Pedido> {
+    return this.httpClient.get<Pedido>(this.apiServer + '/pedidos/' + estado)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
 
-  cmabiarEstadoDelPedido(pedido): Observable<Pedido> {
-    return this.httpClient.post<Pedido>(this.apiServer + '/cliente/pedido/cambiar-estado', JSON.stringify(pedido), this.httpOptions)
+  cambiarEstadoDelPedido(pedido): Observable<Pedido> {
+    return this.httpClient.put<Pedido>(this.apiServer + '/pedido/cambiar-estado', JSON.stringify(pedido), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
+  rechazarPedido(pedido): Observable<Pedido> {
+    return this.httpClient.put<Pedido>(this.apiServer + '/pedido/rechazar', JSON.stringify(pedido), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
+  revisarPedido(datos): Observable<any> {
+    return this.httpClient.put<any>(this.apiServer + '/pedido/revisar', JSON.stringify(datos), this.httpOptions)
       .pipe(
         catchError(this.errorHandler)
       )

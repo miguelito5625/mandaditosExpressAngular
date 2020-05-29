@@ -27,6 +27,8 @@ import { PaginaPrincipalAdminComponent } from './paginas/admin/pagina-principal-
 import { LoginAdminComponent } from './paginas/admin/login-admin/login-admin.component';
 import { RegistrarAdminComponent } from './paginas/admin/registrar-admin/registrar-admin.component';
 import { GuardAdminGuard } from './guards/admin/guard-admin.guard';
+import { PedidosAdminPendientesComponent } from './paginas/admin/listar-pedidos-admin/pedidos-admin-pendientes/pedidos-admin-pendientes.component';
+import { PedidosAdminEntregadosComponent } from './paginas/admin/listar-pedidos-admin/pedidos-admin-entregados/pedidos-admin-entregados.component';
 
 
 const routes: Routes = [
@@ -108,6 +110,14 @@ const routes: Routes = [
       {
         path: '',
         component: PaginaPrincipalAdminComponent
+      },
+      {
+        path: 'consultar-pedidos/pendientes',
+        component: PedidosAdminPendientesComponent
+      },
+      {
+        path: 'consultar-pedidos/entregados',
+        component: PedidosAdminEntregadosComponent
       }
     ]
   },

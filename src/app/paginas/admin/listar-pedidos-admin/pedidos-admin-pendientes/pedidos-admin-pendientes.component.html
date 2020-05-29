@@ -1,0 +1,42 @@
+<div class="row">
+
+    <ul class="list-group mr-auto ml-auto" style="width: 22rem;">
+        <li class="list-group-item">
+            Pedidos Pendientes
+        </li>
+        <li *ngFor="let pedido of listaDePedidos" class="list-group-item">
+            <div class="card text-white bg-secondary mb-3 mr-auto ml-auto" style="width: 100%;">
+                <div class="card-header">Pedido #{{pedido.fila_numero}}</div>
+                <div class="card-body">
+                    <p class="card-text">Cliente: {{pedido.nombre_cliente}}</p>
+                    <p class="card-text">Destino: {{pedido.direccion_cliente}}</p>
+                    <p class="card-text">Telefono: {{pedido.telefono_cliente}}</p>
+                    <p class="card-text">Estado: {{pedido.estado_pedido}}</p>
+                    <p class="card-text">Creado: {{formatearFecha(pedido.onCreated)}}</p>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <button type="button" class="btn btn-info " (click)="revisarPedido(pedido)">Revisar</button>
+                        <button type="button" class="btn btn-danger "
+                            (click)="rechazarPedido(pedido)">Rechazar</button>
+                        <button class="btn btn-primary " (click)="abrirCollapse(pedido.fila_numero)">Detalles</button>
+                    </div>
+
+
+                    <div class="collapse" id="pedido{{pedido.fila_numero}}">
+                        <div class="card card-body text-secondary">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="6"
+                                    style="background-color: white; border-color: white;"
+                                    readonly>{{pedido.pedido}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </li>
+
+    </ul>
+
+
+</div>

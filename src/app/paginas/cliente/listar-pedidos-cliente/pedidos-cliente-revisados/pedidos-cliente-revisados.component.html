@@ -13,15 +13,16 @@
                     <p class="card-text">Telefono: {{pedido.telefono_cliente}}</p>
                     <p class="card-text">Estado: {{pedido.estado_pedido}}</p>
                     <p class="card-text">Creado: {{formatearFecha(pedido.onCreated)}}</p>
+                    <p class="card-text">Revisado: {{formatearFecha(pedido.onUpdated)}}</p>
                     <p class="card-text font-weight-bold">Precio a Pagar: {{pedido.precio}} + precio de los productos</p>
 
 
                       <div class="d-flex bd-highlight mb-3">
                         <div class="mr-auto p-2 bd-highlight">
-                            <button type="button" class="btn btn-success btn-lg" (click)="cambiarEstadoDelPedido(pedido, 'aceptado')">Aceptar</button>
+                            <button type="button" class="btn btn-success btn-lg" (click)="aceptarPedido(pedido, 'aceptado')">Aceptar</button>
                         </div>
                         <div class="p-2 bd-highlight">
-                            <button type="button" class="btn btn-danger btn-lg" (click)="cambiarEstadoDelPedido(pedido, 'rechazado')">Rechazar</button>
+                            <button type="button" class="btn btn-danger btn-lg" (click)="rechazarPedido(pedido)">Rechazar</button>
                         </div>
                       </div>
 
