@@ -48,6 +48,9 @@ import { PedidosAdminAceptadosComponent } from './paginas/admin/listar-pedidos-a
 import { PedidosAdminEntregadosComponent } from './paginas/admin/listar-pedidos-admin/pedidos-admin-entregados/pedidos-admin-entregados.component';
 import { PedidosAdminRechazadosComponent } from './paginas/admin/listar-pedidos-admin/pedidos-admin-rechazados/pedidos-admin-rechazados.component';
 import { PedidosAdminRevisadosComponent } from './paginas/admin/listar-pedidos-admin/pedidos-admin-revisados/pedidos-admin-revisados.component';
+import { PedidosRepartidorEncaminoComponent } from './paginas/repartidor/pedidos/pedidos-repartidor-encamino/pedidos-repartidor-encamino.component';
+import { PedidosRepartidorRechazadosComponent } from './paginas/repartidor/pedidos/pedidos-repartidor-rechazados/pedidos-repartidor-rechazados.component';
+import { PedidosClienteEncaminoComponent } from './paginas/cliente/listar-pedidos-cliente/pedidos-cliente-encamino/pedidos-cliente-encamino.component';
 
 
 @NgModule({
@@ -87,7 +90,10 @@ import { PedidosAdminRevisadosComponent } from './paginas/admin/listar-pedidos-a
     PedidosAdminAceptadosComponent,
     PedidosAdminEntregadosComponent,
     PedidosAdminRechazadosComponent,
-    PedidosAdminRevisadosComponent
+    PedidosAdminRevisadosComponent,
+    PedidosRepartidorEncaminoComponent,
+    PedidosRepartidorRechazadosComponent,
+    PedidosClienteEncaminoComponent
   ],
   imports: [
     BrowserModule,

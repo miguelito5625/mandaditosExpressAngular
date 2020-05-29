@@ -42,6 +42,13 @@ export class PedidoService {
         catchError(this.errorHandler)
       )
   }
+
+  listarPedidosPorRepartidorYEstado(id_repartidor, estado): Observable<Pedido> {
+    return this.httpClient.get<Pedido>(this.apiServer + '/repartidor/' + id_repartidor + '/pedidos/' + estado)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
   
   listarPedidosPorEstado(estado): Observable<Pedido> {
     return this.httpClient.get<Pedido>(this.apiServer + '/pedidos/' + estado)

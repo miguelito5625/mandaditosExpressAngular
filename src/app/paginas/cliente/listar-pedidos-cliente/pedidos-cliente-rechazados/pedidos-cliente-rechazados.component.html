@@ -12,7 +12,7 @@
                     <p class="card-text">Destino: {{pedido.direccion_cliente}}</p>
                     <p class="card-text">Telefono: {{pedido.telefono_cliente}}</p>
                     <p class="card-text">Estado: {{pedido.estado_pedido}}</p>
-                    <p class="card-text">Creado: {{formatearFecha(pedido.onCreated)}}</p>
+                    <p class="card-text">Rechazado: {{formatearFecha(pedido.onUpdated)}}</p>
 
                     <p>
                         <button class="btn btn-primary" (click)="abrirCollapse(pedido.fila_numero)">Detalles</button>
@@ -23,7 +23,9 @@
                             <!-- <textarea rows="1" style="border-color: white;"></textarea> -->
 
                             <div class="form-group">
-                                <textarea class="form-control" rows="8" style="background-color: white; border-color: white;" readonly>{{pedido.pedido}}</textarea>
+                                <textarea class="form-control" rows="8"
+                                    style="background-color: white; border-color: white;"
+                                    readonly>Descripcion del rechazado:&#13;&#10;{{pedido.descripcion_rechazo}}&#13;&#10;&#13;&#10;Pedido:&#13;&#10;{{pedido.pedido}}</textarea>
                             </div>
                         </div>
                     </div>

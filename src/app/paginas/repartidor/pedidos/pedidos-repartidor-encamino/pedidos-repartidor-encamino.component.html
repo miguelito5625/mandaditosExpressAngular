@@ -2,7 +2,7 @@
 
     <ul class="list-group mr-auto ml-auto" style="width: 24rem;">
         <li class="list-group-item">
-            Pedidos Entregados
+            Pedidos en ruta
         </li>
         <li *ngFor="let pedido of listaDePedidos" class="list-group-item">
             <div class="card text-white bg-secondary mb-3 mr-auto ml-auto" style="width: 100%;">
@@ -11,19 +11,27 @@
                     <p class="card-text">Cliente: {{pedido.nombre_cliente}}</p>
                     <p class="card-text">Destino: {{pedido.direccion_cliente}}</p>
                     <p class="card-text">Telefono: {{pedido.telefono_cliente}}</p>
-                    <p class="card-text">Estado: {{pedido.estado_pedido}}</p>
-                    <p class="card-text">Entregado: {{formatearFecha(pedido.onUpdated)}}</p>
-                    <p class="card-text">Costo de mandado: Q{{pedido.precio}}</p>
-                    <p>
+                    <!-- <p class="card-text">Estado: {{pedido.estado_pedido}}</p> -->
+                    <p class="card-text">Creado: {{formatearFecha(pedido.onUpdated)}}</p>
+
+                    <div class="d-flex justify-content-between mb-2">
+                        <button type="button" class="btn btn-success" (click)="entregarPedido(pedido, 'entregado')">Entregar</button>
+                        <button type="button" class="btn btn-danger" (click)="rechazarPedido(pedido)">Rechazar</button>
+                        <button class="btn btn-primary " (click)="abrirCollapse(pedido.fila_numero)">Detalles</button>
+                    </div>
+
+                    <!-- <p>
                         <button class="btn btn-primary" (click)="abrirCollapse(pedido.fila_numero)">Detalles</button>
-                    </p>
+                    </p> -->
 
                     <div class="collapse" id="pedido{{pedido.fila_numero}}">
                         <div class="card card-body text-secondary">
                             <!-- <textarea rows="1" style="border-color: white;"></textarea> -->
 
                             <div class="form-group">
-                                <textarea class="form-control" rows="8" style="background-color: white; border-color: white;" readonly>{{pedido.pedido}}</textarea>
+                                <textarea class="form-control" rows="8"
+                                    style="background-color: white; border-color: white;"
+                                    readonly>{{pedido.pedido}}</textarea>
                             </div>
                         </div>
                     </div>

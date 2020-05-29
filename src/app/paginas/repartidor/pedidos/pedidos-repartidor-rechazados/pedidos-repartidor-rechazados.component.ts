@@ -8,11 +8,11 @@ import { Usuario } from 'src/app/interfaces/usuario/usuario';
 import { PedidoService } from 'src/app/servicios/pedido/pedido.service';
 
 @Component({
-  selector: 'app-pedidos-repartidor-entregados',
-  templateUrl: './pedidos-repartidor-entregados.component.html',
-  styleUrls: ['./pedidos-repartidor-entregados.component.css']
+  selector: 'app-pedidos-repartidor-rechazados',
+  templateUrl: './pedidos-repartidor-rechazados.component.html',
+  styleUrls: ['./pedidos-repartidor-rechazados.component.css']
 })
-export class PedidosRepartidorEntregadosComponent implements OnInit {
+export class PedidosRepartidorRechazadosComponent implements OnInit {
 
   repartidor: Usuario;
   listaDePedidos: any;
@@ -25,7 +25,7 @@ export class PedidosRepartidorEntregadosComponent implements OnInit {
     this.repartidor = JSON.parse(localStorage.getItem('usuario'));
     console.log(this.repartidor);
     
-    this.pedidoService.listarPedidosPorRepartidorYEstado(this.repartidor.id, 'entregado').subscribe(
+    this.pedidoService.listarPedidosPorRepartidorYEstado(this.repartidor.id, 'rechazado').subscribe(
       res => {
         console.log(res);
         this.listaDePedidos = res;

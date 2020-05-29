@@ -29,6 +29,9 @@ import { RegistrarAdminComponent } from './paginas/admin/registrar-admin/registr
 import { GuardAdminGuard } from './guards/admin/guard-admin.guard';
 import { PedidosAdminPendientesComponent } from './paginas/admin/listar-pedidos-admin/pedidos-admin-pendientes/pedidos-admin-pendientes.component';
 import { PedidosAdminEntregadosComponent } from './paginas/admin/listar-pedidos-admin/pedidos-admin-entregados/pedidos-admin-entregados.component';
+import { PedidosRepartidorEncaminoComponent } from './paginas/repartidor/pedidos/pedidos-repartidor-encamino/pedidos-repartidor-encamino.component';
+import { PedidosRepartidorRechazadosComponent } from './paginas/repartidor/pedidos/pedidos-repartidor-rechazados/pedidos-repartidor-rechazados.component';
+import { PedidosClienteEncaminoComponent } from './paginas/cliente/listar-pedidos-cliente/pedidos-cliente-encamino/pedidos-cliente-encamino.component';
 
 
 const routes: Routes = [
@@ -72,6 +75,11 @@ const routes: Routes = [
         // canActivate: [AuthguardGuard]
       },
       {
+        path: 'consultar-pedidos/encamino',
+        component: PedidosClienteEncaminoComponent,
+        // canActivate: [AuthguardGuard]
+      },
+      {
         path: 'consultar-pedidos/entregados',
         component: PedidosClienteEntregadosComponent,
         // canActivate: [AuthguardGuard]
@@ -97,8 +105,16 @@ const routes: Routes = [
         component: PedidosRepartidorPendientesComponent
       },
       {
+        path: 'consultar-pedidos/encamino',
+        component: PedidosRepartidorEncaminoComponent
+      },
+      {
         path: 'consultar-pedidos/entregados',
         component: PedidosRepartidorEntregadosComponent
+      },
+      {
+        path: 'consultar-pedidos/rechazados',
+        component: PedidosRepartidorRechazadosComponent
       }
     ]
   },

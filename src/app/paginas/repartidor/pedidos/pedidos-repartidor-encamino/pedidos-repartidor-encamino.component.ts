@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { Usuario } from 'src/app/interfaces/usuario/usuario';
-import { PedidoService } from 'src/app/servicios/pedido/pedido.service';
 
 declare var $:any;
 declare var Swal:any;
 import * as moment from 'moment';
 import 'moment/min/locales';
+import { Usuario } from 'src/app/interfaces/usuario/usuario';
+import { PedidoService } from 'src/app/servicios/pedido/pedido.service';
 
 @Component({
-  selector: 'app-pedidos-repartidor-pendientes',
-  templateUrl: './pedidos-repartidor-pendientes.component.html',
-  styleUrls: ['./pedidos-repartidor-pendientes.component.css']
+  selector: 'app-pedidos-repartidor-encamino',
+  templateUrl: './pedidos-repartidor-encamino.component.html',
+  styleUrls: ['./pedidos-repartidor-encamino.component.css']
 })
-export class PedidosRepartidorPendientesComponent implements OnInit {
+export class PedidosRepartidorEncaminoComponent implements OnInit {
 
   repartidor: Usuario;
   listaDePedidos: any;
@@ -25,7 +25,7 @@ export class PedidosRepartidorPendientesComponent implements OnInit {
     this.repartidor = JSON.parse(localStorage.getItem('usuario'));
     console.log(this.repartidor);
     
-    this.pedidoService.listarPedidosPorRepartidorYEstado(this.repartidor.id, 'aceptado').subscribe(
+    this.pedidoService.listarPedidosPorRepartidorYEstado(this.repartidor.id, 'en camino').subscribe(
       res => {
         console.log(res);
         this.listaDePedidos = res;
@@ -41,7 +41,7 @@ export class PedidosRepartidorPendientesComponent implements OnInit {
      return moment(fecha).locale("es").fromNow();
    }
 
-   aceptarPedido(pedido: any, estado_pedido){
+   entregarPedido(pedido: any, estado_pedido){
 
     Swal.fire({
       title: 'Procesando',
@@ -66,7 +66,7 @@ export class PedidosRepartidorPendientesComponent implements OnInit {
         if (res['status'] == 'ok') {
           Swal.fire({
             icon: 'success',
-            title: 'Pedido aceptado',
+            title: 'Pedido entregado',
             confirmButtonText: 'Cerrar'
           });
           this.pedidoService.listarPedidosPorRepartidorYEstado(this.repartidor.id, 'aceptado').subscribe(
