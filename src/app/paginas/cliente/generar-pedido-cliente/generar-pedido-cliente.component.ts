@@ -3,6 +3,9 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Pedido } from 'src/app/interfaces/pedido/pedido';
 import { Usuario } from 'src/app/interfaces/usuario/usuario';
 import { PedidoService } from 'src/app/servicios/pedido/pedido.service';
+import { Router } from '@angular/router';
+
+declare var Swal: any;
 
 @Component({
   selector: 'app-generar-pedido-cliente',
@@ -21,7 +24,8 @@ export class GenerarPedidoClienteComponent implements OnInit {
   });
 
   constructor(
-    private pedidoService: PedidoService
+    private pedidoService: PedidoService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -32,8 +36,20 @@ export class GenerarPedidoClienteComponent implements OnInit {
     this.formularioPedido.controls.inputDireccion.setValue(this.cliente.direccion);
   }
 
-  onSubmit(){
+  onSubmit() {
     // console.log(this.formularioPedido.value);
+
+    Swal.fire({
+      title: 'Procesando',
+      icon: 'info',
+      html: 'Por favor, espere',
+      timerProgressBar: true,
+      allowOutsideClick: false,
+      onBeforeOpen: () => {
+        Swal.showLoading()
+      }
+    });
+
     const pedido: Pedido = {
       id_cliente: this.cliente.id,
       nombre_cliente: this.formularioPedido.controls.inputNombre.value,
@@ -43,13 +59,47 @@ export class GenerarPedidoClienteComponent implements OnInit {
       id_repartidor: null,
       estado: "pendiente",
     };
-    
+
     this.pedidoService.guardarPedido(pedido).subscribe(
       res => {
+
         console.log(res);
+
+        if (res['status'] == 'ok') {
+          Swal.fire({
+            icon: 'success',
+            title: 'Pedido realizado',
+            confirmButtonText: 'Cerrar',
+            allowOutsideClick: false,
+            onClose: (toast) => {
+
+              this.router.navigate(['/cliente/consultar-pedidos']);
+
+            }
+          });
+
+
+        } else {
+          console.log('ocurrio un error al rechazar el pedido');
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al procesar el pedido',
+            confirmButtonText: 'Cerrar'
+          });
+        }
+
+
+      },
+      err => {
+        console.log('ocurrio un error al rechazar el pedido');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error al procesar el pedido',
+          confirmButtonText: 'Cerrar'
+        });
       }
     );
-    
+
   }
 
 }
