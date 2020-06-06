@@ -5,7 +5,7 @@
             Pedidos Pendientes
         </li>
         <li *ngFor="let pedido of listaDePedidos" class="list-group-item">
-            <div class="card text-white bg-secondary mb-3 mr-auto ml-auto" style="width: 100%;">
+            <div *ngIf="pedido.estado_pedido=='revisado'; else pedidoNoEstaRivisadoHTML" class="card text-white bg-secondary mb-3 mr-auto ml-auto" style="width: 100%;">
                 <div class="card-header">Pedido #{{pedido.fila_numero}}</div>
                 <div class="card-body">
                     <p class="card-text">Cliente: {{pedido.nombre_cliente}}</p>
@@ -13,10 +13,27 @@
                     <p class="card-text">Telefono: {{pedido.telefono_cliente}}</p>
                     <p class="card-text">Estado: {{pedido.estado_pedido}}</p>
                     <p class="card-text">Creado: {{formatearFecha(pedido.onCreated)}}</p>
+                    <p class="card-text">Revisado: {{formatearFecha(pedido.onUpdated)}}</p>
+                    <p class="card-text font-weight-bold">Precio a Pagar: {{pedido.precio}} + precio de los productos</p>
 
-                    <p>
-                        <button class="btn btn-primary" (click)="abrirCollapse(pedido.fila_numero)">Detalles</button>
-                    </p>
+
+                      <div class="d-flex bd-highlight mb-3">
+                        <div class="mr-auto p-2 bd-highlight">
+                            <button type="button" class="btn btn-success btn-lg" (click)="aceptarPedido(pedido, 'aceptado')">Aceptar</button>
+                        </div>
+                        <div class="p-2 bd-highlight">
+                            <button type="button" class="btn btn-danger btn-lg" (click)="rechazarPedido(pedido)">Rechazar</button>
+                        </div>
+                      </div>
+
+                    <div class="d-flex bd-highlight mb-3">
+                        <div class="mr-auto p-2 bd-highlight">
+                            <p>
+                                <button class="btn btn-primary" (click)="abrirCollapse(pedido.fila_numero)">Detalles</button>
+                            </p>
+                        </div>
+                      </div>
+
 
                     <div class="collapse" id="pedido{{pedido.fila_numero}}">
                         <div class="card card-body text-secondary">
@@ -30,6 +47,39 @@
 
                 </div>
             </div>
+
+            <ng-template #pedidoNoEstaRivisadoHTML>
+                
+                <div class="card text-white bg-secondary mb-3 mr-auto ml-auto" style="width: 100%;">
+                    <div class="card-header">Pedido #{{pedido.fila_numero}}</div>
+                    <div class="card-body">
+                        <p class="card-text">Cliente: {{pedido.nombre_cliente}}</p>
+                        <p class="card-text">Destino: {{pedido.direccion_cliente}}</p>
+                        <p class="card-text">Telefono: {{pedido.telefono_cliente}}</p>
+                        <p class="card-text">Estado: {{pedido.estado_pedido}}</p>
+                        <p class="card-text">Creado: {{formatearFecha(pedido.onCreated)}}</p>
+    
+                        <p>
+                            <button class="btn btn-primary" (click)="abrirCollapse(pedido.fila_numero)">Detalles</button>
+                        </p>
+    
+                        <div class="collapse" id="pedido{{pedido.fila_numero}}">
+                            <div class="card card-body text-secondary">
+                                <!-- <textarea rows="1" style="border-color: white;"></textarea> -->
+    
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="8" style="background-color: white; border-color: white;" readonly>{{pedido.pedido}}</textarea>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+
+            </ng-template>
+
+
+
         </li>
 
     </ul>

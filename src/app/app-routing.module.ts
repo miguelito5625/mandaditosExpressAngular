@@ -32,6 +32,11 @@ import { PedidosAdminEntregadosComponent } from './paginas/admin/listar-pedidos-
 import { PedidosRepartidorEncaminoComponent } from './paginas/repartidor/pedidos/pedidos-repartidor-encamino/pedidos-repartidor-encamino.component';
 import { PedidosRepartidorRechazadosComponent } from './paginas/repartidor/pedidos/pedidos-repartidor-rechazados/pedidos-repartidor-rechazados.component';
 import { PedidosClienteEncaminoComponent } from './paginas/cliente/listar-pedidos-cliente/pedidos-cliente-encamino/pedidos-cliente-encamino.component';
+import { MenuPedidosAdminComponent } from './paginas/admin/menu-pedidos-admin/menu-pedidos-admin.component';
+import { MenuUsuariosAdminComponent } from './paginas/admin/menu-usuarios-admin/menu-usuarios-admin.component';
+import { MenuRepartidoresAdminComponent } from './paginas/admin/menu-repartidores-admin/menu-repartidores-admin.component';
+import { CrearRepartidorAdminComponent } from './paginas/admin/menu-repartidores-admin/crear-repartidor-admin/crear-repartidor-admin.component';
+import { MostrarRepartidoresAdminComponent } from './paginas/admin/menu-repartidores-admin/mostrar-repartidores-admin/mostrar-repartidores-admin.component';
 
 
 const routes: Routes = [
@@ -128,12 +133,32 @@ const routes: Routes = [
         component: PaginaPrincipalAdminComponent
       },
       {
-        path: 'consultar-pedidos/pendientes',
+        path: 'pedidos',
+        component: MenuPedidosAdminComponent
+      },
+      {
+        path: 'pedidos/pendientes',
         component: PedidosAdminPendientesComponent
       },
       {
-        path: 'consultar-pedidos/entregados',
+        path: 'pedidos/entregados',
         component: PedidosAdminEntregadosComponent
+      },
+      {
+        path: 'usuarios',
+        component: MenuUsuariosAdminComponent
+      },
+      {
+        path: 'usuarios/repartidores',
+        component: MenuRepartidoresAdminComponent
+      },
+      {
+        path: 'usuarios/repartidores/crear',
+        component: CrearRepartidorAdminComponent
+      },
+      {
+        path: 'usuarios/repartidores/mostrar',
+        component: MostrarRepartidoresAdminComponent
       }
     ]
   },
@@ -149,18 +174,18 @@ const routes: Routes = [
     path: 'repartidor/login',
     component: LoginRepartidorComponent
   },
-  {
-    path:'repartidor/registro',
-    component: RegistrarRepartidorComponent
-  },
+  // {
+  //   path:'repartidor/registro',
+  //   component: RegistrarRepartidorComponent
+  // },
   {
     path: 'admin/login',
     component: LoginAdminComponent
   },
-  {
-    path:'admin/registro',
-    component: RegistrarAdminComponent
-  }
+  // {
+  //   path:'admin/registro',
+  //   component: RegistrarAdminComponent
+  // }
 ];
 
 @NgModule({

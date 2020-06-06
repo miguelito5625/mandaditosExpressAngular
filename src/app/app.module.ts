@@ -51,6 +51,11 @@ import { PedidosAdminRevisadosComponent } from './paginas/admin/listar-pedidos-a
 import { PedidosRepartidorEncaminoComponent } from './paginas/repartidor/pedidos/pedidos-repartidor-encamino/pedidos-repartidor-encamino.component';
 import { PedidosRepartidorRechazadosComponent } from './paginas/repartidor/pedidos/pedidos-repartidor-rechazados/pedidos-repartidor-rechazados.component';
 import { PedidosClienteEncaminoComponent } from './paginas/cliente/listar-pedidos-cliente/pedidos-cliente-encamino/pedidos-cliente-encamino.component';
+import { MenuPedidosAdminComponent } from './paginas/admin/menu-pedidos-admin/menu-pedidos-admin.component';
+import { MenuUsuariosAdminComponent } from './paginas/admin/menu-usuarios-admin/menu-usuarios-admin.component';
+import { MenuRepartidoresAdminComponent } from './paginas/admin/menu-repartidores-admin/menu-repartidores-admin.component';
+import { CrearRepartidorAdminComponent } from './paginas/admin/menu-repartidores-admin/crear-repartidor-admin/crear-repartidor-admin.component';
+import { MostrarRepartidoresAdminComponent } from './paginas/admin/menu-repartidores-admin/mostrar-repartidores-admin/mostrar-repartidores-admin.component';
 
 
 @NgModule({
@@ -93,7 +98,12 @@ import { PedidosClienteEncaminoComponent } from './paginas/cliente/listar-pedido
     PedidosAdminRevisadosComponent,
     PedidosRepartidorEncaminoComponent,
     PedidosRepartidorRechazadosComponent,
-    PedidosClienteEncaminoComponent
+    PedidosClienteEncaminoComponent,
+    MenuPedidosAdminComponent,
+    MenuUsuariosAdminComponent,
+    MenuRepartidoresAdminComponent,
+    CrearRepartidorAdminComponent,
+    MostrarRepartidoresAdminComponent
   ],
   imports: [
     BrowserModule,

@@ -47,7 +47,7 @@ export class PedidosAdminPendientesComponent implements OnInit {
         console.log('error al cargar los repartidores');
         
       }
-    )
+    );
   }
 
   abrirCollapse(idcollapse) {

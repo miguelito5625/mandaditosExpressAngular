@@ -1,5 +1,7 @@
 <div class="container">
     <form class="mx-auto" style="width: 300px; margin-top: 10rem;" autocomplete="off" [formGroup]="loginForm" (submit)="onSubmit()">
+        <h5 class="text-center">Area de administradores</h5>
+
         <div class="form-group d-flex justify-content-center">
             <img class="img-fluid" src="/assets/imagenes/imagen-login.png" style="height: 200px; width: 200px;">
         </div>
@@ -22,7 +24,7 @@
             </div>
         </div>
 
-        <a routerLink="/repartidor/registro">Registrarse...</a>
+        <!-- <a routerLink="/repartidor/registro">Registrarse...</a> -->
         <br>
 
         <button type="submit" class="btn btn-primary float-right"><i class="fas fa-sign-in-alt"></i> Login</button>

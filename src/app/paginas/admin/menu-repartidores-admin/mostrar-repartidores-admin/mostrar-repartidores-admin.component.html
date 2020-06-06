@@ -1,0 +1,100 @@
+<h4>Repartidores</h4>
+
+<ul class="list-group">
+    <li *ngFor="let repartidor of listaDeRepartidores" class="list-group-item d-flex justify-content-between align-items-center">
+     {{repartidor.fila_numero}}. {{repartidor.nombre}}
+      <button type="button" class="btn btn-primary" (click)="abrirModal(repartidor)">Modificar</button>
+    </li>
+    
+  </ul>
+
+
+  <!-- Modal -->
+<div class="modal fade" id="modalModificarRepartidor" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="modalModificarRepartidorLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalModificarRepartidorLabel">Modificar Repartidor</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+            <form class="mx-auto" style="width: 300px;" autocomplete="off" [formGroup]="formularioRepartidorModal" (submit)="onSubmit()">
+            
+                <!-- <div class="form-group d-flex justify-content-center">
+                    <img class="img-fluid" src="/assets/imagenes/imagen-login.png" style="height: 200px; width: 200px;">
+                </div> -->
+                <div class="form-group mt-2">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white"><i class="far fa-user"></i></span>
+                        </div>
+                        <input class="form-control" type="text" placeholder="Nombres"
+                            auto-complete="false" formControlName="inputNombres">
+                    </div>
+                </div>
+        
+                <div class="form-group mt-2">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white"><i class="far fa-user"></i></span>
+                        </div>
+                        <input class="form-control" type="text" placeholder="Apellidos"
+                            auto-complete="false" formControlName="inputApellidos">
+                    </div>
+                </div>
+        
+                
+        
+                <div class="form-group mt-2">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white"><i class="far fa-user"></i></span>
+                        </div>
+                        <input class="form-control" type="text" placeholder="Direccion"
+                            auto-complete="false" formControlName="inputDireccion">
+                    </div>
+                </div>
+        
+                <div class="form-group mt-2">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white"><i class="far fa-user"></i></span>
+                        </div>
+                        <input class="form-control" type="text" placeholder="Telefono"
+                            auto-complete="false" formControlName="inputTelefono">
+                    </div>
+                </div>
+        
+                <div class="form-group mt-2">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white"><i class="far fa-user"></i></span>
+                        </div>
+                        <input id="userEmail" class="form-control" name="userEmail" type="email" placeholder="correo"
+                            auto-complete="false" formControlName="inputEmail">
+                    </div>
+                </div>
+                <!-- <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white"><i class="fas fa-unlock-alt"></i></span>
+                        </div>
+                        <input id="userPassword" class="form-control" type="password" placeholder="contrasena"
+                            auto-complete="something-new" formControlName="inputPassword">
+                    </div>
+                </div> -->
+        
+                <button type="submit" class="btn btn-primary float-right"><i class="fas fa-sign-in-alt"></i> Guardar</button>
+            </form>
+            
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div> -->
+      </div>
+    </div>
+  </div>

@@ -43,6 +43,13 @@ export class PedidoService {
       )
   }
 
+  listarPedidosPRAEPorCliente(id_cliente): Observable<Pedido> {
+    return this.httpClient.get<Pedido>(this.apiServer + '/cliente/pedidos/prae/' + id_cliente)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
   listarPedidosPorRepartidorYEstado(id_repartidor, estado): Observable<Pedido> {
     return this.httpClient.get<Pedido>(this.apiServer + '/repartidor/' + id_repartidor + '/pedidos/' + estado)
       .pipe(
