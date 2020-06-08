@@ -64,6 +64,13 @@ export class PedidoService {
       )
   }
 
+  filtrarPedidosEntregadosPorRepartidorYFechas(datos:any): Observable<Pedido> {
+    return this.httpClient.get<Pedido>(this.apiServer + '/pedidos/entregado/'+ datos.id_repartidor +'/fechaDesde/'+ datos.fechaDesde +'/fechaHasta/' + datos.fechaHasta)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
   cambiarEstadoDelPedido(pedido): Observable<Pedido> {
     return this.httpClient.put<Pedido>(this.apiServer + '/pedido/cambiar-estado', JSON.stringify(pedido), this.httpOptions)
       .pipe(

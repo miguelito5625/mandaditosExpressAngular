@@ -68,7 +68,7 @@ export class PedidosClientePendientesComponent implements OnInit {
             title: 'Pedido aceptado',
             confirmButtonText: 'Cerrar'
           });
-          this.pedidoService.listarPedidosPorClienteYEstado(this.cliente.id, 'revisado').subscribe(
+          this.pedidoService.listarPedidosPRAEPorCliente(this.cliente.id).subscribe(
             res => {
               console.log(res);
               this.listaDePedidos = res;
@@ -149,12 +149,12 @@ export class PedidosClientePendientesComponent implements OnInit {
             title: 'Pedido rechazado',
             confirmButtonText: 'Cerrar'
           });
-          this.pedidoService.listarPedidosPorClienteYEstado(this.cliente.id, 'revisado').subscribe(
+          this.pedidoService.listarPedidosPRAEPorCliente(this.cliente.id).subscribe(
             res => {
               console.log(res);
               this.listaDePedidos = res;
             }
-          );  
+          );
         } else {
           console.log('ocurrio un error al rechazar el pedido');
           Swal.fire({
