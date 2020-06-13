@@ -21,7 +21,8 @@
                     <p class="card-text">Destino: {{pedido.direccion_cliente}}</p>
                     <p class="card-text">Telefono: {{pedido.telefono_cliente}}</p>
                     <p class="card-text">Estado: {{pedido.estado_pedido}}</p>
-                    <p class="card-text">Creado: {{formatearFecha(pedido.onCreated)}}</p>
+                    <p class="card-text">Entregado: {{formatearFecha(pedido.onUpdated)}}</p>
+                    <p class="card-text">Fecha de entrega: {{formatoFechaLocal(pedido.onUpdated)}}</p>
   
                     <div class="d-flex justify-content-between mb-2">
                         <button class="btn btn-primary " (click)="abrirCollapse(pedido.fila_numero)">Detalles</button>

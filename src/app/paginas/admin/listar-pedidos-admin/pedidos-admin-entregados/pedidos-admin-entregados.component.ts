@@ -61,6 +61,10 @@ export class PedidosAdminEntregadosComponent implements OnInit {
     return moment(fecha).locale("es").fromNow();
   }
 
+  public formatoFechaLocal(fecha) {
+    return moment(fecha).locale('es').format('dddd, DD [de] MMMM [de] YYYY [a las] h:mm a');
+  }
+
 
   filtrarPedidos() {
 
